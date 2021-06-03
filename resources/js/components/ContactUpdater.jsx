@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
 import ReactDOM from 'react-dom';
->>>>>>> www: add a generic contact component
 import Editor from './Contact';
 
 
