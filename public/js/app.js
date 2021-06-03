@@ -1868,8 +1868,6 @@ __webpack_require__(/*! ./components/ContactUpdater */ "./resources/js/component
 
 __webpack_require__(/*! ./components/ContactAdder */ "./resources/js/components/ContactAdder.jsx");
 
-__webpack_require__(/*! ./components/Contacts */ "./resources/js/components/Contacts.jsx");
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -1916,272 +1914,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/ContactAdder.jsx":
-/*!**************************************************!*\
-  !*** ./resources/js/components/ContactAdder.jsx ***!
-  \**************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-
-
-var ContactEditor = /*#__PURE__*/function (_Component) {
-  _inherits(ContactEditor, _Component);
-
-  var _super = _createSuper(ContactEditor);
-
-  function ContactEditor(props) {
-    var _this;
-
-    _classCallCheck(this, ContactEditor);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      firstname: '',
-      lastname: '',
-      email: '',
-      city: '',
-      country: '',
-      jobtitle: ''
-    };
-    _this.firstName = _this.firstName.bind(_assertThisInitialized(_this));
-    _this.lastName = _this.lastName.bind(_assertThisInitialized(_this));
-    _this.takeEmail = _this.takeEmail.bind(_assertThisInitialized(_this));
-    _this.takeCity = _this.takeCity.bind(_assertThisInitialized(_this));
-    _this.takeJobtitle = _this.takeJobtitle.bind(_assertThisInitialized(_this));
-    _this.takeCountry = _this.takeCountry.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(ContactEditor, [{
-    key: "firstName",
-    value: function firstName(event) {
-      this.setState({
-        firstname: event.target.value
-      });
-    }
-  }, {
-    key: "lastName",
-    value: function lastName(event) {
-      this.setState({
-        lastname: event.target.value
-      });
-    }
-  }, {
-    key: "takeCountry",
-    value: function takeCountry(event) {
-      this.setState({
-        country: event.target.value
-      });
-    }
-  }, {
-    key: "takeEmail",
-    value: function takeEmail(event) {
-      this.setState({
-        email: event.target.value
-      });
-    }
-  }, {
-    key: "takeCity",
-    value: function takeCity(event) {
-      this.setState({
-        city: event.target.value
-      });
-    }
-  }, {
-    key: "takeJobtitle",
-    value: function takeJobtitle(event) {
-      this.setState({
-        jobtitle: event.target.value
-      });
-    }
-  }, {
-    key: "handleSubmit",
-    value: function () {
-      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var contact;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                contact = {
-                  first_name: this.state.firstname,
-                  last_name: this.state.lastname,
-                  email: this.state.email,
-                  job_title: this.state.jobtitle,
-                  country: this.state.country,
-                  city: this.state.city
-                };
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default().post('/contacts', contact).then(function (response) {
-                  return alert(JSON.stringify(response.data));
-                })["catch"](function (error) {
-                  console.log("ERROR:: ", error.response.data);
-                  return;
-                });
-
-              case 3:
-                alert('Contact Added');
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleSubmit() {
-        return _handleSubmit.apply(this, arguments);
-      }
-
-      return handleSubmit;
-    }()
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "contact-editor",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-          "class": "display-3",
-          children: "Add a contact"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "first_name",
-              children: "First Name:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "first_name",
-              onChange: this.firstName
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "last_name",
-              children: "Last Name:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "last_name",
-              onChange: this.lastName
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "email",
-              children: "Email:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "email",
-              onChange: this.takeEmail
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "city",
-              children: "City:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "city",
-              onChange: this.takeCity
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "country",
-              children: "Country:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "country",
-              onChange: this.takeCountry
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "job_title",
-              children: "Job Title:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "job_title",
-              onChange: this.takeJobtitle
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "submit",
-            className: "btn btn-primary",
-            onClick: this.handleSubmit,
-            children: "Add contact"
-          })]
-        })]
-      });
-    }
-  }]);
-
-  return ContactEditor;
-}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactEditor);
-
-if (document.getElementById("home")) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ContactEditor, {}), document.getElementById("home"));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/ContactUpdater.jsx":
-/*!****************************************************!*\
-  !*** ./resources/js/components/ContactUpdater.jsx ***!
-  \****************************************************/
+/***/ "./resources/js/components/Contact.jsx":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Contact.jsx ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2246,7 +1982,19 @@ var Editor = /*#__PURE__*/function (_Component) {
        to be able to parse correctly the contact object 
     */
 
-    var contact = JSON.parse(JSON.stringify(props.contact));
+    var contact = {
+      first_name: '',
+      last_name: '',
+      email: '',
+      job_title: '',
+      country: '',
+      city: ''
+    };
+
+    if (props !== null && props !== void 0 && props.contact) {
+      contact = JSON.parse(props === null || props === void 0 ? void 0 : props.contact);
+    }
+
     _this.state = {
       firstname: contact.first_name,
       lastname: contact.last_name,
@@ -2255,6 +2003,7 @@ var Editor = /*#__PURE__*/function (_Component) {
       country: contact.country,
       jobtitle: contact.job_title
     };
+    _this.mode = props === null || props === void 0 ? void 0 : props.mode;
     _this.firstName = _this.firstName.bind(_assertThisInitialized(_this));
     _this.lastName = _this.lastName.bind(_assertThisInitialized(_this));
     _this.takeEmail = _this.takeEmail.bind(_assertThisInitialized(_this));
@@ -2311,31 +2060,17 @@ var Editor = /*#__PURE__*/function (_Component) {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var contact;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                contact = {
-                  first_name: this.state.firstname,
-                  last_name: this.state.lastname,
-                  email: this.state.email,
-                  job_title: this.state.jobtitle,
-                  country: this.state.country,
-                  city: this.state.city
-                };
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default().put('/contacts/' + JSON.parse(this.props.contact).id, contact).then(function (response) {
-                  return alert(JSON.stringify(response.data));
-                })["catch"](function (error) {
-                  console.log("ERROR:: ", error.response.data);
-                  return;
-                });
+                if (this.mode) {
+                  this.handleUpdateSubmit();
+                } else {
+                  this.handleAddSubmit();
+                }
 
-              case 3:
-                alert('Contact Updated');
-
-              case 4:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -2350,13 +2085,111 @@ var Editor = /*#__PURE__*/function (_Component) {
       return handleSubmit;
     }()
   }, {
+    key: "setTitle",
+    value: function setTitle() {
+      if (this.mode) {
+        return 'Update contact';
+      } else {
+        return 'Add new contact';
+      }
+    }
+  }, {
+    key: "handleAddSubmit",
+    value: function () {
+      var _handleAddSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var contact;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                contact = {
+                  first_name: this.state.firstname,
+                  last_name: this.state.lastname,
+                  email: this.state.email,
+                  job_title: this.state.jobtitle,
+                  country: this.state.country,
+                  city: this.state.city
+                };
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default().post('/contacts', contact).then(function (response) {
+                  return alert(JSON.stringify(response.data));
+                })["catch"](function (error) {
+                  console.log("ERROR:: ", error.response.data);
+                  return;
+                });
+
+              case 3:
+                alert('Contact Added');
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleAddSubmit() {
+        return _handleAddSubmit.apply(this, arguments);
+      }
+
+      return handleAddSubmit;
+    }()
+  }, {
+    key: "handleUpdateSubmit",
+    value: function () {
+      var _handleUpdateSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var contact;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                contact = {
+                  first_name: this.state.firstname,
+                  last_name: this.state.lastname,
+                  email: this.state.email,
+                  job_title: this.state.jobtitle,
+                  country: this.state.country,
+                  city: this.state.city
+                };
+                _context3.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_3___default().put('/contacts/' + JSON.parse(this.props.contact).id, contact).then(function (response) {
+                  return alert(JSON.stringify(response.data));
+                })["catch"](function (error) {
+                  console.log("ERROR:: ", error.response.data);
+                  return;
+                });
+
+              case 3:
+                alert('Contact Updated');
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function handleUpdateSubmit() {
+        return _handleUpdateSubmit.apply(this, arguments);
+      }
+
+      return handleUpdateSubmit;
+    }()
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        "class": "contact-editor",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-          "class": "display-3",
-          children: "Update a contact"
+        className: "contact-editor",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
+          className: "display-3",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+              href: "/contacts",
+              children: "Go back"
+            })
+          }), this.setTitle()]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "form-group",
@@ -2434,7 +2267,7 @@ var Editor = /*#__PURE__*/function (_Component) {
             type: "submit",
             className: "btn btn-primary",
             onClick: this.handleSubmit,
-            children: "Update"
+            children: this.setTitle()
           })]
         })]
       });
@@ -2448,10 +2281,10 @@ var Editor = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Contacts.jsx":
-/*!**********************************************!*\
-  !*** ./resources/js/components/Contacts.jsx ***!
-  \**********************************************/
+/***/ "./resources/js/components/ContactAdder.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ContactAdder.jsx ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2459,26 +2292,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _Contact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Contact */ "./resources/js/components/Contact.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2505,223 +2323,112 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var ContactAdder = /*#__PURE__*/function (_Component) {
+  _inherits(ContactAdder, _Component);
 
-var Editor = /*#__PURE__*/function (_Component) {
-  _inherits(Editor, _Component);
+  var _super = _createSuper(ContactAdder);
 
-  var _super = _createSuper(Editor);
+  function ContactAdder(props) {
+    _classCallCheck(this, ContactAdder);
 
-  function Editor(props) {
-    var _this;
-
-    _classCallCheck(this, Editor);
-
-    _this = _super.call(this, props);
-    var contact = JSON.parse(JSON.stringify(props.contact));
-    contact = JSON.parse(contact);
-    _this.state = {
-      firstname: contact.first_name,
-      lastname: contact.last_name,
-      email: contact.email,
-      city: contact.city,
-      country: contact.country,
-      jobtitle: contact.job_title
-    };
-    _this.firstName = _this.firstName.bind(_assertThisInitialized(_this));
-    _this.lastName = _this.lastName.bind(_assertThisInitialized(_this));
-    _this.takeEmail = _this.takeEmail.bind(_assertThisInitialized(_this));
-    _this.takeCity = _this.takeCity.bind(_assertThisInitialized(_this));
-    _this.takeJobtitle = _this.takeJobtitle.bind(_assertThisInitialized(_this));
-    _this.takeCountry = _this.takeCountry.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.call(this, props);
   }
 
-  _createClass(Editor, [{
-    key: "firstName",
-    value: function firstName(event) {
-      this.setState({
-        firstname: event.target.value
-      });
-    }
-  }, {
-    key: "lastName",
-    value: function lastName(event) {
-      this.setState({
-        lastname: event.target.value
-      });
-    }
-  }, {
-    key: "takeCountry",
-    value: function takeCountry(event) {
-      this.setState({
-        country: event.target.value
-      });
-    }
-  }, {
-    key: "takeEmail",
-    value: function takeEmail(event) {
-      this.setState({
-        email: event.target.value
-      });
-    }
-  }, {
-    key: "takeCity",
-    value: function takeCity(event) {
-      this.setState({
-        city: event.target.value
-      });
-    }
-  }, {
-    key: "takeJobtitle",
-    value: function takeJobtitle(event) {
-      this.setState({
-        jobtitle: event.target.value
-      });
-    }
-  }, {
-    key: "handleSubmit",
-    value: function () {
-      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var contact;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                contact = {
-                  first_name: this.state.firstname,
-                  last_name: this.state.lastname,
-                  email: this.state.email,
-                  job_title: this.state.jobtitle,
-                  country: this.state.country,
-                  city: this.state.city
-                };
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_3___default().put('/contacts/' + JSON.parse(this.props.contact).id, contact).then(function (response) {
-                  return alert(JSON.stringify(response.data));
-                })["catch"](function (error) {
-                  console.log("ERROR:: ", error.response.data);
-                  return;
-                });
-
-              case 3:
-                alert('Contact Updated');
-
-              case 4:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleSubmit() {
-        return _handleSubmit.apply(this, arguments);
-      }
-
-      return handleSubmit;
-    }()
-  }, {
+  _createClass(ContactAdder, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        "class": "contact-editor",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-          "class": "display-3",
-          children: "Update a contact"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "first_name",
-              children: "First Name:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "first_name",
-              value: this.state.firstname,
-              onChange: this.firstName
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "last_name",
-              children: "Last Name:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "last_name",
-              value: this.state.lastname,
-              onChange: this.lastName
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "email",
-              children: "Email:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "email",
-              value: this.state.email,
-              onChange: this.takeEmail
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "city",
-              children: "City:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "city",
-              value: this.state.city,
-              onChange: this.takeCity
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "country",
-              children: "Country:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "country",
-              value: this.state.country,
-              onChange: this.takeCountry
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "form-group",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-              htmlFor: "job_title",
-              children: "Job Title:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
-              type: "text",
-              className: "form-control",
-              name: "job_title",
-              value: this.state.jobtitle,
-              onChange: this.takeJobtitle
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-            type: "submit",
-            className: "btn btn-primary",
-            onClick: this.handleSubmit,
-            children: "Update"
-          })]
-        })]
-      });
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Contact__WEBPACK_IMPORTED_MODULE_2__.default, {});
     }
   }]);
 
-  return Editor;
-}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+  return ContactAdder;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Editor);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactAdder);
+
+if (document.getElementById("home")) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ContactAdder, {}), document.getElementById("home"));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/ContactUpdater.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/ContactUpdater.jsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _Contact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Contact */ "./resources/js/components/Contact.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var ContactUpdater = /*#__PURE__*/function (_Component) {
+  _inherits(ContactUpdater, _Component);
+
+  var _super = _createSuper(ContactUpdater);
+
+  function ContactUpdater(props) {
+    _classCallCheck(this, ContactUpdater);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ContactUpdater, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Contact__WEBPACK_IMPORTED_MODULE_2__.default, _objectSpread({
+        mode: "update"
+      }, this.props));
+    }
+  }]);
+
+  return ContactUpdater;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ContactUpdater);
 
 if (document.getElementById("editor")) {
   var propsContainer = document.getElementById("props");
   var props = Object.assign({}, propsContainer.dataset);
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Editor, _objectSpread({}, props)), document.getElementById("editor"));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(ContactUpdater, _objectSpread({}, props)), document.getElementById("editor"));
 }
 
 /***/ }),

@@ -14,4 +14,3 @@ require('./bootstrap');
 
 require('./components/ContactUpdater');
 require('./components/ContactAdder');
-require('./components/Contacts');
