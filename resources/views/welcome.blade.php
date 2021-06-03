@@ -8,7 +8,9 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <div id="home"></div>
-        <script src="{{asset('js/app.js')}}"></script>
+        <div class="welcome">
+            <div><a href="/contacts">Display Contacts</a></div>
+            <div><a href="/contacts/create">Create new contact</a></div>
+        </div>
     </body>
 </html>

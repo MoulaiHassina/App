@@ -7,9 +7,23 @@ class Editor extends Component {
 
     constructor(props) {
         super(props);
+		/* parse function doesn't accept spaces, comma etc
+		   some restrictions need to be done on db attributes
+		   to be able to parse correctly the contact object 
+		*/
+		let contact = {
+            first_name:  '',
+            last_name: '',
+            email: '',
+            job_title: '',
+            country: '',
+            city: '',
+        };
 
-        let contact = JSON.parse(JSON.stringify(props.contact));
-        contact = JSON.parse(contact);
+		if (props?.contact) {
+			contact = JSON.parse(props?.contact);
+		}
+	
         this.state = {
             firstname : contact.first_name,
             lastname : contact.last_name,
@@ -18,6 +32,7 @@ class Editor extends Component {
             country: contact.country,
             jobtitle : contact.job_title,
         }
+		this.mode = props?.mode;
         this.firstName = this.firstName.bind(this);
         this.lastName = this.lastName.bind(this);
         this.takeEmail = this.takeEmail.bind(this);
@@ -47,8 +62,45 @@ class Editor extends Component {
         this.setState({jobtitle : event.target.value})
     }
     
+	async handleSubmit() {
+		if (this.mode) {
+			this.handleUpdateSubmit();
+		} else {
+			this.handleAddSubmit();
+		}
+	}
 
-    async handleSubmit() {
+	setTitle() {
+		if (this.mode) {
+			return 'Update contact';
+		} else {
+			return 'Add new contact';
+		}
+	}
+
+	async handleAddSubmit() {
+        const contact = {
+            first_name:  this.state.firstname,
+            last_name: this.state.lastname,
+            email: this.state.email,
+            job_title: this.state.jobtitle,
+            country: this.state.country,
+            city: this.state.city,
+        };
+        await axios.post('/contacts', contact)
+            .then(
+                response => alert(JSON.stringify(response.data))
+                
+                )
+            .catch(error => {
+                console.log("ERROR:: ",error.response.data);
+                return;
+            });
+		alert('Contact Added');
+
+    }
+
+    async handleUpdateSubmit() {
         const contact = {
             first_name:  this.state.firstname,
             last_name: this.state.lastname,
@@ -75,8 +127,11 @@ class Editor extends Component {
 
     render() {
         return ( 
-        <div class="contact-editor">
-        <h1 class="display-3">Update a contact</h1>
+        <div className="contact-editor">
+            <h1 className="display-3">
+                <div><a href="/contacts">Go back</a></div>
+                {this.setTitle()}
+            </h1>
             <div>
             <div className="form-group">
                 <label htmlFor="first_name">First Name:</label>
@@ -102,7 +157,7 @@ class Editor extends Component {
                 <label htmlFor="job_title">Job Title:</label>
                 <input type="text" className="form-control" name="job_title" value={this.state.jobtitle} onChange={this.takeJobtitle}/>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={this.handleSubmit} >Update</button>
+            <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>{this.setTitle()}</button>
             </div>
     </div>
         );
@@ -110,9 +165,3 @@ class Editor extends Component {
 }
 
 export default Editor;
-
-if (document.getElementById("editor")) {
-    const propsContainer = document.getElementById("props");
-    const props = Object.assign({}, propsContainer.dataset);
-    ReactDOM.render( <Editor {...props}></Editor> , document.getElementById("editor") );
-}

@@ -15,7 +15,7 @@ use App\Http\Controllers\ContactController;
 */
 
 Route::get('/', function () {
-    return view('contacts/index');
+    return view('welcome');
 });
 
 Route::resource('/contacts', 'ContactController');
