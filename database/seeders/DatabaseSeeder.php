@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Contact;
 
 use Storage;
+use DB;
 
 
 class DatabaseSeeder extends Seeder
@@ -17,8 +18,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        // \App\Models\User::factory(10)->create();
+    {   DB::table('contacts')->delete();
         $json = Storage::disk('local')->get('database.json');
         $data = json_decode($json);
         if(is_array($data) || is_object($data))
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
                     'city' => "",
                     'country' => "America"]);
                 $contact->save();
+            }
         }
-    }
     }
 }

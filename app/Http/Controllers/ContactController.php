@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use DB;
 
 class ContactController extends Controller
 {
@@ -79,7 +80,7 @@ class ContactController extends Controller
         $contact->email = $request->get('email');        
         $contact->job_title = $request->get('job_title');        
         $contact->city = $request->get('city');        
-        $contact->country = $request->get('country');        
+        $contact->country = $request->get('country');
         $contact->save();
     }
 

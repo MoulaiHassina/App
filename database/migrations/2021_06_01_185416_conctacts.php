@@ -21,7 +21,11 @@ class Conctacts extends Migration
                       $table->string('country');                    
             });    
         } 
-        /**     * Reverse the migrations.     *     * @return void     */    
+        /** * Reverse the migrations.    
+         *  **
+         * @return void
+         * 
+         * */
         public function down()
         {
             Schema::dropIfExists('contacts');    
