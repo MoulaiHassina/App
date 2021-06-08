@@ -26,11 +26,13 @@ class DatabaseSeeder extends Seeder
             foreach ($data as $obj) {
                 $contact = new Contact([
                     'first_name' => $obj->name,
+                    /* should merge first name & last name */
                     'last_name' => "",
                     'email' => $obj->email_address,
                     'job_title' => $obj->job_title,
                     'city' => "",
-                    'country' => "America"]);
+                    'country' => "",
+                    'gender' => $obj->gender]);
                 $contact->save();
             }
         }

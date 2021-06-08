@@ -12,7 +12,7 @@ class Contact extends Model
         'email',
         'job_title',
         'city',
-        'country'];
+        'country', 'gender'];
 
     use HasFactory;
 }
