@@ -23,7 +23,7 @@
                 <td>{{$contact->job_title}}</td>
                 <td>{{$contact->gender}}</td>        
                 <td>                
-                <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>            </td>            <td>                <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">                  @csrf                  @method('DELETE')                  <button class="btn btn-danger" type="submit">Delete</button>                </form>            </td>        </tr>        @endforeach    </tbody>  </table><div></div>@endsection
+                <a href="{{ secure_route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>            </td>            <td>                <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">                  @csrf                  @method('DELETE')                  <button class="btn btn-danger" type="submit">Delete</button>                </form>            </td>        </tr>        @endforeach    </tbody>  </table><div></div>@endsection
 
 <div class="col-sm-12">  
     @if(session()->get('success'))    
